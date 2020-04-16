@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By.ByClassName;
+import org.openqa.selenium.By.ById;
 import org.openqa.selenium.chrome.ChromeDriver;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
@@ -14,12 +15,12 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.And;
 
 public class end2endGistStep {
-	WebDriver driver;
+	public static WebDriver driver;
 	/*create public gist*/
 	@Given("^open browser and go to gist page \"([^\"]*)\"$")
     public void open_browser_and_go_to_gist_page_something(String strArg1) throws Throwable {
-		System.setProperty("webdriver.chrome.driver","..//ShopeeTest//browser//chromedriver.exe");    
-		driver =new ChromeDriver();				
+		System.setProperty("webdriver.chrome.driver","..//ShopeeTest//browser//chromedriver.exe");  
+		driver = new ChromeDriver();
 	    driver.manage().window().maximize();			
 	    driver.get(strArg1);
     }
@@ -47,7 +48,7 @@ public class end2endGistStep {
 
     @Then("^user click button create public gist$")
     public void user_click_button_create_public_gist() throws Throwable {
-       driver.findElement(By.className("btn js-gist-create")).click(); 
+       driver.findElement(By.xpath("//button[contains(text(),'Create public gist')]")).click(); 
     }
 
     @And("^user input username \"([^\"]*)\"$")
@@ -72,20 +73,16 @@ public class end2endGistStep {
 
     @And("^user input content \"([^\"]*)\"$")
     public void user_input_content_something(String strArg1) throws Throwable {
-    	driver.findElement(By.className("CodeMirror-lines")).click();
-        driver.findElement(By.className("CodeMirror-lines")).sendKeys(strArg1);
+    	driver.findElement(By.xpath("//pre[contains(@class,'CodeMirror-line')]")).click();
+        driver.findElement(By.xpath("//pre[contains(@class,'CodeMirror-line')]")).sendKeys(strArg1);
     }
     
     /*edit public gist*/
-    @Given("^user on gist$")
-    public void user_on_gist() throws Throwable {
-    	String title = driver.getTitle();
-        System.out.println(title);
-    }
-    
     @When("^user click button edit$")
     public void user_click_button_edit() throws Throwable {
-        driver.findElement(By.className("btn btn-sm")).click();
+    	Thread.sleep(2000);
+    	driver.findElement(By.xpath("//*[@id=\"gist-pjax-container\"]/div[1]/div/div[1]/ul/li[1]/a")).click();
+        //driver.findElement(By.className("btn btn-sm")).click();
     }
 
     @Then("^user click button update public gist$")
@@ -101,12 +98,6 @@ public class end2endGistStep {
     @Then("^user click button confirm delete$")
     public void user_click_button_confirm_delete() throws Throwable {
     	driver.switchTo().alert().accept();
-    }
-
-    @And("^user on list gist$")
-    public void user_on_list_gist() throws Throwable {
-    	String title = driver.getTitle();
-        System.out.println(title);
     }
     /*list all public gist*/
     @When("^user click icon profile$")
