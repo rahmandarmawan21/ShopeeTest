@@ -15,10 +15,6 @@ Install eclipse
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
 ```
 Give the example
 ```
@@ -33,7 +29,8 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+open TestRunner.java path : ..\ShopeeTest\src\main\java\Runner\TestRunner.java
+right click > run as > jUnit test
 
 ### Break down into end to end tests
 
@@ -66,13 +63,14 @@ Add additional notes about how to deploy this on a live system
 Please read 
 
 ## Versioning
-
+0.1
  
 
 ## Authors
 
 * **
-
+M Rahman Darmawan
+rahman.drm21@gmail.com
 
 ## License
 
