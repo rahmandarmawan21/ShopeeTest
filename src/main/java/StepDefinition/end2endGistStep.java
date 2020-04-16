@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.By.ByClassName;
 import org.openqa.selenium.By.ById;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
@@ -23,6 +24,7 @@ public class end2endGistStep {
 		driver = new ChromeDriver();
 	    driver.manage().window().maximize();			
 	    driver.get(strArg1);
+	    WebDriverWait wait = new WebDriverWait(driver, 30);
     }
 
     @When("^user on gist page$")
