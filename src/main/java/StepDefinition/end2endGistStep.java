@@ -92,7 +92,8 @@ public class end2endGistStep {
     /*delete public gist*/
     @When("^user click button delete$")
     public void user_click_button_delete() throws Throwable {
-        driver.findElement(By.className("btn btn-sm btn-danger")).click();
+	driver.findElement(By.xpath("//*[@id=\"gist-pjax-container\"]/div[1]/div/div[1]/ul/li[2]/form/button")).click();
+        //driver.findElement(By.className("btn btn-sm btn-danger")).click();
     }
 
     @Then("^user click button confirm delete$")
